@@ -12,6 +12,7 @@
       font-family: Arial, sans-serif;
       text-align: center;
       color: white;
+      overflow-x: hidden;
     }
 
     .container {
@@ -19,15 +20,26 @@
       margin: auto;
     }
 
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
     img {
       width: 100%;
       max-width: 250px;
       border-radius: 20px;
       margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
     button {
-      margin-top: 15px;
+      margin-top: 20px;
       padding: 12px 25px;
       font-size: 18px;
       border: none;
@@ -35,47 +47,82 @@
       background-color: white;
       color: #ff4b5c;
       cursor: pointer;
+      transition: 0.3s;
     }
 
-    audio {
-      margin-top: 15px;
-      width: 100%;
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: white;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 
 <body>
 
+<!-- 🎵 MÚSICA -->
+<audio autoplay loop>
+  <source src="Musica de fundo mais triste do chaves (MP3_160K).mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
 
+  <!-- 📸 FOTO -->
   <img src="https://raw.githubusercontent.com/11666-cpu/Desculpinha-/main/IMG-20260427-WA0175(1).jpg">
 
   <h1>Me desculpinha minha neném 🥹</h1>
 
   <p>
-    Eu juro que não fiz nada de propósito...<br><br>
-    Eu nem falo com aquela garota 😭<br><br>
-    Você é a única pra mim ❤️<br><br>
-    Me desculpa vai... 🥹
+    oi, vc vai deixar seu nenezinho tristinho se não desculpar ele...🥹<br><br>
+
+    Eu só liguei pro Androius, e quando vi já tinha aquela garota lá<br>
+    E tipo..🥹 eu nem falo com ela, nunca falei na vida.<br><br>
+
+    Eu entendo que vc ficou assim, de verdadinha 🥹.<br>
+    Mas vc é a única pra mim ❤️<br><br>
+
+    posso te encher de carinho até vc esquecer isso? 🥹<br>
+    te amo muito ok<br><br>
+
+    Me desculpa, vai neném 🥹🥹🥹
   </p>
 
-  <!-- 🎵 PLAYER VISÍVEL -->
-  <audio id="musica" controls preload="auto">
-    <source src="Musica de fundo mais triste do chaves (MP3_160K).mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- BOTÃO PRA FORÇAR PLAY -->
-  <button onclick="playMusic()">Tocar música triste 🎵</button>
-
+  <button onclick="alert('Eu te amo muito 🥹')">Clica aqui 🥹</button>
 </div>
 
 <script>
-  function playMusic() {
-    const m = document.getElementById("musica");
-    m.play().catch(err => {
-      alert("Toca no player abaixo 👇");
-    });
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
   }
+
+  setInterval(createHeart, 300);
 </script>
 
 </body>
